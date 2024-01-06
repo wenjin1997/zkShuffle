@@ -21,7 +21,8 @@ pragma circom 2.0.0;
 include "../../node_modules/circomlib/circuits/bitify.circom";
 include "../../node_modules/circomlib/circuits/escalarmulfix.circom";
 include "../../node_modules/circomlib/circuits/escalarmulany.circom";
-include "../../node_modules/circomlib/circuits/babyjub.circom";
+// include "../../node_modules/circomlib/circuits/babyjub.circom";
+include "../circomlib/jub.circom";
 
 // ElGamalEncrypt:
 // c0 = r * g + ic0
@@ -40,7 +41,7 @@ template ElGamalEncrypt(numBits, base) {
     for(var i=0; i<numBits; i++) {
         computeC0.e[i] <== bitDecomposition.out[i];
     }
-    component adder0 = BabyAdd();
+    component adder0 = JubAdd();
     adder0.x1 <== computeC0.out[0];
     adder0.y1 <== computeC0.out[1];
     adder0.x2 <== ic0[0];
@@ -55,7 +56,7 @@ template ElGamalEncrypt(numBits, base) {
     for(var i=0; i<numBits; i++) {
         computeC1.e[i] <== bitDecomposition.out[i];
     }
-    component adder1 = BabyAdd();
+    component adder1 = JubAdd();
     adder1.x1 <== computeC1.out[0];
     adder1.y1 <== computeC1.out[1];
     adder1.x2 <== ic1[0];
@@ -81,7 +82,7 @@ template ElGamalDecrypt(numBits) {
     for(var i=0; i<numBits; i++) {
         scalarMul.e[i] <== bitDecomposition.out[i];
     }
-    component adder = BabyAdd();
+    component adder = JubAdd();
     adder.x1 <== 0 - scalarMul.out[0];
     adder.y1 <== scalarMul.out[1];
     adder.x2 <== c1[0];

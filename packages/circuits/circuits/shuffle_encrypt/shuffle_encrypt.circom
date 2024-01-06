@@ -1,6 +1,7 @@
 pragma circom 2.0.0;
 
-include "../common/babyjubjub.circom";
+// include "../common/babyjubjub.circom";
+include "../common/jubjub.circom";
 include "../common/elgamal.circom";
 include "../common/matrix.circom";
 include "../common/permutation.circom";
@@ -9,9 +10,12 @@ include "../../node_modules/circomlib/circuits/bitify.circom";
 
 template ShuffleEncryptV2(numCards) {
     var numBits = 251;
-    // Base8 generator of Baby JubJub curve: https://github.com/iden3/circomlibjs/blob/main/src/babyjub.js#L18-L21
-    var base[2] = [5299619240641551281634865583518297030282874472190772894086521144482721001553,
-                   16950150798460657717958625567821834550301663161624707787222815936182638968203];
+    // // Base8 generator of Baby JubJub curve: https://github.com/iden3/circomlibjs/blob/main/src/babyjub.js#L18-L21
+    // var base[2] = [5299619240641551281634865583518297030282874472190772894086521144482721001553,
+    //                16950150798460657717958625567821834550301663161624707787222815936182638968203];
+    // Base8 generator of JubJub curve
+    var base[2] = [25048732578063176751608348748134148938511950496662102134944680124345451629928,
+                   37193546711722353718211339597021920218737743307281823076963067517006020382455];
     signal input pk[2];                 // group element on inner curve
     signal input UX0[numCards];         // numCards x-coordinates of group elements on inner curve
     signal input UX1[numCards];         // numCards x-coordinates of group elements on inner curve

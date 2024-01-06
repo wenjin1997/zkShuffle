@@ -3,7 +3,8 @@ pragma circom 2.0.0;
 include "../common/elgamal.circom";
 include "../common/matrix.circom";
 include "../common/permutation.circom";
-include "../common/babyjubjub.circom";
+// include "../common/babyjubjub.circom";
+include "../common/jubjub.circom";
 include "../../node_modules/circomlib/circuits/bitify.circom";
 
 /// X layout:
@@ -25,7 +26,7 @@ template ShuffleEncryptTemplate(base, numCards, numBits) {
     for (var i = 0; i < numCards*numCards; i++) {
         permutation.in[i] <== A[i];
     }
-    component shuffle[4];
+    component shuffle[4];  // B = A * X
     for (var i = 0; i < 4; i++) {
         shuffle[i] = matrixMultiplication(numCards, numCards);
         for (var j = 0; j < numCards*numCards; j++) {
@@ -38,8 +39,13 @@ template ShuffleEncryptTemplate(base, numCards, numBits) {
             B[i*numCards + j] <== shuffle[i].B[j];
         }
     }
+    
     component elgamal[numCards];
+    // 加密 Y = ElGamalEncrypt(g, pk, B, R)
     for (var i = 0; i < numCards; i++) {
+        // ElGamalEncrypt:
+        // c0 = r * g + ic0
+        // c1 = r * pk + ic1
         elgamal[i] = ElGamalEncrypt(numBits, base);
         elgamal[i].ic0[0] <== B[i];
         elgamal[i].ic0[1] <== B[numCards + i];

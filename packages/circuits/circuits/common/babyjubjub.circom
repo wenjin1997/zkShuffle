@@ -3,6 +3,7 @@ pragma circom 2.0.0;
 include "../../node_modules/circomlib/circuits/bitify.circom";
 include "../../node_modules/circomlib/circuits/compconstant.circom";
 
+// 验证在 Baby JubJub 曲线上
 template ecDecompress() {
     signal input x;         // base field elements of inner curve
     signal input s;         // boolean selector
@@ -16,6 +17,7 @@ template ecDecompress() {
     n2b.in <== delta;
     // On Baby JubJub curve, q = 21888242871839275222246405745257275088548364400416034343698204186575808495617
     // (q-1)/2 = 10944121435919637611123202872628637544274182200208017171849102093287904247808;
+    // template CompConstant(ct) : Returns 1 if in (in binary) > ct 
     component cmp = CompConstant(10944121435919637611123202872628637544274182200208017171849102093287904247808);
     for (var i = 0; i < 254; i++) {
         cmp.in[i] <== n2b.out[i];

@@ -1887,7 +1887,7 @@ __metadata:
     hardhat: ^2.12.2
     keccak: ^3.0.3
     log4js: ^6.7.1
-    snarkjs: ^0.7.0
+    snarkjs: ^0.6.11
     ts-node: ^10.9.1
     typechain: ^8.1.1
     typescript: ^4.9.3
@@ -12237,6 +12237,26 @@ __metadata:
   bin:
     snarkjs: build/cli.cjs
   checksum: 5898ee988f3e2dfeb9cd25454fce3b185b8f596ae56bbe2faaf0bc6db4e7e6049f296b4e9bddf425fd804775a9d2d7b228d08363452229f57e92cf334156cd01
+  languageName: node
+  linkType: hard
+
+"snarkjs@npm:^0.6.11":
+  version: 0.6.11
+  resolution: "snarkjs@npm:0.6.11"
+  dependencies:
+    "@iden3/binfileutils": 0.0.11
+    bfj: ^7.0.2
+    blake2b-wasm: ^2.4.0
+    circom_runtime: 0.1.22
+    ejs: ^3.1.6
+    fastfile: 0.0.20
+    ffjavascript: 0.2.57
+    js-sha3: ^0.8.0
+    logplease: ^1.2.15
+    r1csfile: 0.0.45
+  bin:
+    snarkjs: build/cli.cjs
+  checksum: 692508b6f8048b6879975844cae4b9a6713713e20fec488ebd21a4b224b7e0318f6aba59ce06d332728d184148c943fa04e3a49e0af173d325011f506e42363e
   languageName: node
   linkType: hard
 
