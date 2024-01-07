@@ -34,6 +34,8 @@
     "pub2npmjs": "npm publish --access=public",
     "test": "hardhat test",
     "testcommon": "hardhat test ./tests/common.ts",
+    "testshuffle": "hardhat test ./tests/shuffle.ts",
+    "testbenchmark": "hardhat test ./tests/benchmark.ts",
     "checksum": "yarn ts-node utils/generate_checksum.ts",
     "upload": "echo 'todo'"
   },

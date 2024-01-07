@@ -17,7 +17,8 @@ import {
 import { ethers } from "hardhat";
 import { resolve } from "path";
 import { readFileSync } from "fs";
-const buildBabyjub = require("circomlibjs").buildBabyjub;
+// const buildBabyjub = require("circomlibjs").buildBabyjub;
+const buildjubjub = require("../circuits/circomlibjs/jubjub.ts").buildJubJub;
 const snarkjs = require("snarkjs");
 
 describe("Shuffle encrypt/decrypt benchmark tests", function () {
@@ -33,7 +34,7 @@ describe("Shuffle encrypt/decrypt benchmark tests", function () {
   });
 
   it("Benchmark Shuffle Encrypt/Decrypt", async function () {
-    const babyjub = await buildBabyjub();
+    const babyjub = await buildjubjub();
     const keysAlice = keyGen(babyjub, numBits);
     const pk = keysAlice.pk;
     const pkString = [babyjub.F.toString(keysAlice.pk[0]), babyjub.F.toString(keysAlice.pk[1])];

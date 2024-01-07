@@ -40,7 +40,7 @@ template ecDecompress() {
     // jubjub curve
     // -10241 * x^2 + y^2 = 1 - 10240 * x^2 * y^2
     // - x^2 + y^2 = 1 + (-10240/10241) * x^2 * y^2
-    - x_square + delta_square === 1 - (10240 / 10241) * x_square * delta_square;
+    40964 * x_square + delta_square === 1 + 40960 * x_square * delta_square;
 
     tmp[0] <== s*delta;
     tmp[1] <== (s-1) * delta;
