@@ -184,9 +184,9 @@ export function ecCompress(ecArr: bigint[]): {
   selector: bigint;
 } {
   assert(ecArr.length < 254 * 2, "Length of ecArr should be less than 254*2.");
-  const q = 21888242871839275222246405745257275088548364400416034343698204186575808495617n;
+  const q = 52435875175126190479447740508185965837690552500527637822603658699938581184513n;
   const q_minus1_over2 =
-    10944121435919637611123202872628637544274182200208017171849102093287904247808n;
+    26217937587563095239723870254092982918845276250263818911301829349969290592256n;
   const deltaArr: bigint[] = [];
   const selectorArr: boolean[] = [];
   for (let i = ecArr.length / 2; i < ecArr.length; i++) {
@@ -218,7 +218,7 @@ export function ecDecompress(xArr: bigint[], deltaArr: bigint[], selector: bigin
       ", deltaArr.length: " +
       String(deltaArr.length),
   );
-  const q = 21888242871839275222246405745257275088548364400416034343698204186575808495617n;
+  const q = 52435875175126190479447740508185965837690552500527637822603658699938581184513n;
   const ecArr: bigint[] = [];
   for (let i = 0; i < xArr.length; i++) {
     ecArr.push(xArr[i]);
@@ -299,7 +299,7 @@ export function printArray(arr: bigint[]) {
 ///     (a * x^2 + delta^2 = 1 + d * x^2 * delta^2) % q
 ///     0 <= delta <= (q-1)/2
 export function ecX2Delta(babyjub: BabyJub, x: bigint): bigint {
-  const q = 21888242871839275222246405745257275088548364400416034343698204186575808495617n;
+  const q = 52435875175126190479447740508185965837690552500527637822603658699938581184513n;
   const q_minus1_over2 =
     10944121435919637611123202872628637544274182200208017171849102093287904247808n;
   const xFq = babyjub.F.e(x);
@@ -355,7 +355,7 @@ export function prepareDecryptData(
   cardIdx: number,
 ): bigint[] {
   const Y = [];
-  const q = 21888242871839275222246405745257275088548364400416034343698204186575808495617n;
+  const q = 52435875175126190479447740508185965837690552500527637822603658699938581184513n;
   const delta0 = ecX2Delta(babyjub, x0.toBigInt());
   const delta1 = ecX2Delta(babyjub, x1.toBigInt());
   const flag0 = BigInt(num2Bits(selector0.toBigInt(), numCards)[cardIdx]);

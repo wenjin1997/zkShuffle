@@ -29,7 +29,7 @@ describe("Utility circuit unit tests", function () {
     await compile_utility_circuits();
   });
 
-  it("Elliptic curve decompression on baby jubjub curve is correct", async function () {
+  it("Elliptic curve decompression on jubjub curve is correct", async function () {
     let babyjub = await buildjubjub();
     const wasmFile = resolve(__dirname, "../wasm/jubjub.wasm");
     const zkeyFile = resolve(__dirname, "../zkey/jubjub.zkey");

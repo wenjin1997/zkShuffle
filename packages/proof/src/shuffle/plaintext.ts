@@ -14,8 +14,10 @@ export function elgamalEncrypt(babyJub: BabyJub, ic0: EC, ic1: EC, r: bigint, pk
 
 /// Computes ElGamal Decryption.
 export function elgamalDecrypt(babyJub: BabyJub, c0: EC, c1: EC, sk: bigint): EC {
-  // Scalar Field Size of Baby JubJub curve
-  const r = 2736030358979909402780800718157159386076813972158567259200215660948447373041n;
+  // // Scalar Field Size of Baby JubJub curve
+  // const r = 2736030358979909402780800718157159386076813972158567259200215660948447373041n;
+  // Scalar Field Size of JubJub curve
+  const r = 6554484396890773809930967563523245729705921265872317281365359162392183254199n;
   // c1 - sk * c0
   return babyJub.addPoint(c1, babyJub.mulPointEscalar(c0, r - sk));
 }

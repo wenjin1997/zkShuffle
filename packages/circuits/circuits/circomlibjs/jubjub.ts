@@ -54,7 +54,7 @@ class JubJub {
     );
     this.subOrder = Scalar.shiftRight(this.order, 3);
     this.A = F.e("-1");
-    this.D = F.e("-(10240/10241)");
+    this.D = F.e("19257038036680949359750312669786877991949435402254120286184196891950884077233");
   }
 
   addPoint(a: any[], b: any[]) {
