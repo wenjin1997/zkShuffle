@@ -301,10 +301,10 @@ export function printArray(arr: bigint[]) {
 export function ecX2Delta(babyjub: BabyJub, x: bigint): bigint {
   const q = 52435875175126190479447740508185965837690552500527637822603658699938581184513n;
   const q_minus1_over2 =
-    10944121435919637611123202872628637544274182200208017171849102093287904247808n;
+    26217937587563095239723870254092982918845276250263818911301829349969290592256n;
   const xFq = babyjub.F.e(x);
-  const a = babyjub.F.e(168700);
-  const d = babyjub.F.e(168696);
+  const a = babyjub.F.e(40964);
+  const d = babyjub.F.e(40960);
   const one = babyjub.F.e(1);
   const xSquare = babyjub.F.square(xFq);
   let delta = babyjub.F.sqrt(

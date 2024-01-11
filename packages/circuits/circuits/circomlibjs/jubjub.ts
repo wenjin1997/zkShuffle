@@ -3,8 +3,8 @@ const Scalar = require("ffjavascript").Scalar;
 const getCurveFromName = require("ffjavascript").getCurveFromName;
 
 export async function buildJubJub() {
-  const bn12381 = await getCurveFromName("BLS12381", true);
-  return new JubJub(bn12381.Fr);
+  const bls12381 = await getCurveFromName("BLS12381", true);
+  return new JubJub(bls12381.Fr);
 }
 
 class JubJub {

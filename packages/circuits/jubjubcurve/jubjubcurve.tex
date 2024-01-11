@@ -1,0 +1,150 @@
+% \documentclass[11pt,twoside,a4paper]{article}
+% \usepackage{times}
+
+% \usepackage{xeCJK}
+
+% \setmainfont{Times New Roman}
+
+% \setCJKmainfont{Songti SC}
+\documentclass[10pt]{ctexart}
+% \usepackage[UTF-8]{ctex}
+\usepackage{amsmath}
+\usepackage{amsthm} % 根据 amsthm 的手册, amsthm 的加载要在 amsmath 之后
+\usepackage{amssymb}  %为了能使用\mathbb{H} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage[colorlinks,linkcolor=blue]{hyperref} % 使用超链接
+\usepackage{pdfpages}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{graphicx}
+
+\usepackage{listings}
+
+\lstset{
+ columns=fixed,       
+ numbers=left,                                        % 在左侧显示行号
+ numberstyle=\tiny\color{gray},                       % 设定行号格式
+ frame=none,                                          % 不显示背景边框
+ backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+ keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+ numberstyle=\footnotesize\color{darkgray},           
+ commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+ stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+ showstringspaces=false,                              % 不显示字符串中的空格
+%language=c++,                                        % 设置语言
+}
+
+\newtheorem{definition}{定义}
+\newtheorem{lemma}{引理}
+\newtheorem{theorem}{定理}
+
+
+
+\title{JubJub曲线}
+\author{谢文进}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{JubJub曲线}
+\subsection{Baby JubJub vs. JubJub}
+\begin{table}[h]
+  \centering
+  \setlength{\tabcolsep}{4mm}
+  \caption{Baby JubJub vs. JubJub} \label{tab:example1}
+  \begin{tabular}{ccc}
+  \toprule
+    & Baby JubJub & JubJub\\
+  \midrule
+  Montgomery curve & $y^2 = x^3 + 168698x^2 + x$ & $y^2 = x^3 + 40962x^2 + x$ \\
+  Twisted Edwards curve & $168700x^2 + y^2 = 1 + 168696x^2y^2$ & $40964x^2 + y^2 = 1 + 40960x^2y^2$ \\
+  After scaling & $-x^2+y^2 = 1 + (-168696/168700)x^2y^2$ & $-x^2+y^2 = 1 + (-10240/10241)x^2y^2$\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Montgomery curve}
+BLS12381的阶：
+
+$p =52435875175126190479447740508185965837690552500527637822603658699938581184513$
+
+JubJub曲线：$y^2=x^3+40962x^2+x$
+
+$n = h \times l$,其中$h = 8$
+$$
+n = 52435875175126190479447740508185965837647370126978538250922873299137466033592
+$$
+$$
+l = 6554484396890773809930967563523245729705921265872317281365359162392183254199
+$$
+
+生成元：$G_0^M=(x_0^M,y_0^M)$
+
+$$
+x_0^M = 10,
+$$
+$$
+y_0^M=4864016555691628132658688815665199693566189978262460729570611510575653263443
+$$
+
+base point $G_1^M = (x_1^M,y_1^M)$
+$$
+x_1^M = 18662558417428907826588413824421338451096304318249267443782476967941530951665,
+$$
+$$
+y_1^M=10829583678449754674258847202008243338777477689250089851084221267577753407818
+$$
+% \subsubsection{BabyJubJub curve}
+% BN254的素数阶：
+
+% $p =21888242871839275222246405745257275088548364400416034343698204186575808495617$
+
+% JubJub曲线：$y^2=x^3+16898x^2+x$
+
+% 生成元：$G_0^M=(x_0^M,y_0^M)$
+
+% $$
+% x_0^M = 7,
+% $$
+% $$
+% y_0^M=4864016555691628132658688815665199693566189978262460729570611510575653263443
+% $$
+
+% base point $G_1^M = (x_1^M,y_1^M)$
+% $$
+% x_1^M = 18662558417428907826588413824421338451096304318249267443782476967941530951665,
+% $$
+% $$
+% y_1^M=10829583678449754674258847202008243338777477689250089851084221267577753407818
+% $$
+\subsection{Twisted Edwards curve}
+曲线方程：$40964x^2 + y^2 = 1 + 40960x^2y^2$
+
+生成元：$G_0=(x_0,y_0)$
+
+$$
+x_0 = 50210964013865202807697778192253911217867412634541528443086291916476367487291 ,
+$$
+$$
+y_0=9533795486386580087172316456033811970489191363732297785927937945443378397185
+$$
+
+base point $G_1 = (x_1,y_1)$
+$$
+x_1 = 25048732578063176751608348748134148938511950496662102134944680124345451629928 ,
+$$
+$$
+y_1=37193546711722353718211339597021920218737743307281823076963067517006020382455
+$$
+\subsection{scale}
+Theorem 6. Consider a twisted Edwards curve defined over Fp given by equation $ax^2 + y^2 = 1 + dx^2y^2$. If $−a$ is a square in $\mathbb{F}_p$, then the map $(x, y) \rightarrow (x/\sqrt{-a}, y)$ defines the curve $−x^2 + y^2 = 1 + (−d/a)x^2y^2$. We denote by $f = \sqrt{-a}$ the scaling factor.
+
+因此曲线$40964x^2 + y^2 = 1 + 40960x^2y^2$等价于曲线$-x^2+y^2 = 1 + (-10240/10241)x^2y^2$. scaling factor为$f = \sqrt{-40964}$.
+\end{document}

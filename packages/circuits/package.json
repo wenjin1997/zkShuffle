@@ -35,6 +35,7 @@
     "test": "hardhat test",
     "testcommon": "hardhat test ./tests/common.ts",
     "testshuffle": "hardhat test ./tests/shuffle.ts",
+    "testshuffle4benchmack": "hardhat test ./tests/shuffle.ts -grep 'Benchmark Shuffle Encrypt/Decrypt'",
     "testbenchmark": "hardhat test ./tests/benchmark.ts",
     "checksum": "yarn ts-node utils/generate_checksum.ts",
     "upload": "echo 'todo'"
